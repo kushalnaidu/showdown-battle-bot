@@ -51,7 +51,7 @@ async def battle_tag(websocket, message, usage):
                 battles.append(battle)
                 await senders.sendmessage(websocket, battle.battletag, "Hi")
                 await senders.sendmessage(websocket, battle.battletag, "/timer on")
-            elif current[1] == "player" and len(current) > 3 and current[3].lower() == "suchtestbot":
+            elif current[1] == "player" and len(current) > 3 and current[3].lower() == "pwnzerbot":
                 # Récupérer l'id joueur du bot
                 battle.player_id = current[2]
                 battle.turn += int(current[2].split('p')[1]) - 1
@@ -83,7 +83,7 @@ async def battle_tag(websocket, message, usage):
                     with open("log.txt", "r+") as file:
                         line = file.read().split('/')
                         file.seek(0)
-                        if "suchtestbot" in current[2].lower():
+                        if "pwnzerbot" in current[2].lower():
                             file.write(str(int(line[0]) + 1) + "/" + line[1] + "/" + str(int(line[2]) + 1))
                         else:
                             file.write(line[0] + "/" + str(int(line[1]) + 1) + "/" + str(int(line[2]) + 1))
@@ -114,10 +114,10 @@ async def stringing(websocket, message, usage=0):
     if string_tab[1] == "challstr":
         # If we got the challstr, we now can log in.
         await log_in(websocket, string_tab[2], string_tab[3])
-    elif string_tab[1] == "updateuser" and string_tab[2] == "SuchTestBot":
+    elif string_tab[1] == "updateuser" and string_tab[2] == "PwnzerBot":
         # Once we are connected.
         if usage == 1:
-            await senders.challenge(websocket, "Synedh", formats[0])
+            await senders.challenge(websocket, "SuchTestBot", formats[0])
         if usage == 2:
             await senders.searching(websocket, formats[0])
             nb_fights += 1
@@ -145,7 +145,7 @@ async def stringing(websocket, message, usage=0):
                                          + ", Sorry, I accept only solo randomized metas.")
         except KeyError:
             pass
-    elif string_tab[1] == "pm" and "SuchTestBot" not in string_tab[2]:
+    elif string_tab[1] == "pm" and "PwnzerBot" not in string_tab[2]:
         if string_tab[4] == ".info":
             await senders.sender(websocket, "", "/pm " + string_tab[2] + ", Showdown Battle Bot. Active for "
                                                                        + ", ".join(formats[:-1]) + " and "

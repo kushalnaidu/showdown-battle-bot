@@ -12,8 +12,8 @@ async def main():
     async with websockets.connect('ws://sim.smogon.com:8000/showdown/websocket') as websocket:
         while True:
             message = await websocket.recv()
-            print("<< {}".format(message))
-            await stringing(websocket, message)
+            print("From Main Function: << {}".format(message))
+            await stringing(websocket, message,1)
 
 
 def test():
@@ -33,7 +33,7 @@ def test():
     # print(pkm1.moves)
     for move in pkm1.moves:
         print(move["name"])
-    print(effi_move(pkm1.moves[7], pkm1, pkm2, []))
+    print(effi_move(None,pkm1.moves[7], pkm1, pkm2, ["Abomasnow","Abomasnow","Abomasnow","Abomasnow","Abomasnow","Abomasnow"]))
 
 
 if __name__ == "__main__":
